@@ -1,26 +1,40 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { assets } from "../assets/assets";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AppContext } from '../Context/AppContext';
 
 export const Navbar = () => {
-
-    const {user,logout,credit,setShowLogin}= useContext(AppContext);
+    const { user, logout, credit } = useContext(AppContext);
     const navigate = useNavigate();
+
     return (
         <>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary" style={{height:"65px"}}>
+            <nav
+                className="navbar px-4 my-2 sticky-top navbar-expand-lg"
+                style={{
+                    height: "70px",
+                    backgroundColor: "black",
+                    borderBottom: "1px solid rgb(68,72,73)",
+                    marginTop: 0,
+                    paddingTop: 0,
+                    top: 0, // Ensures sticky positioning works correctly
+                    zIndex: 1030, // Keeps navbar on top
+                }}
+            >
                 <div className="container-fluid">
                     {/* Logo Section */}
-                    {/* <img
-                        src={assets.logo}
-                        alt="Logo"
-                        style={{ cursor: "pointer" }}
+                    <p
+                        className="ms-4 mt-2"
+                        style={{
+                            cursor: "pointer",
+                            color: "white",
+                            textShadow: "2px 2px 3px rgb(0,122,255)",
+                            fontSize: "28pt",
+                        }}
                         onClick={() => navigate('/')}
-                        className="me-auto"
-                    /> */}
-                    <p className='ms-4 mt-2' style={{ cursor: "pointer",color: "rgb(0,122,255)",textShadow:"1px 1px 2px black",fontSize:"28pt" }}
-                        onClick={() => navigate('/')}><strong>Imagenation</strong></p>
+                    >
+                        <strong>Imagenation</strong>
+                    </p>
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -33,13 +47,11 @@ export const Navbar = () => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse ms-auto navbar-collapse" id="navbarSupportedContent">
-                        {/* If logged in */}
                         {user ? (
                             <ul className="navbar-nav ms-auto d-flex column align-items-center gap-3 mt-3 mt-lg-0">
-                                
                                 {/* User Info Section */}
                                 <li className="nav-item d-flex align-items-center">
-                                    <p className="mb-0">Hi, {user.name}</p>
+                                    <p className="mb-0 text-white">Hi, {user.name}</p> 
                                     <div className="ms-2">
                                         <img
                                             src={assets.profile_icon}
@@ -54,39 +66,45 @@ export const Navbar = () => {
                                         />
                                     </div>
                                 </li>
+                                |
                                 {/* Credits Section */}
                                 <li className="nav-item d-flex ">
-                                    <button style={{backgroundColor:"rgb(201, 200, 199)"}}
+                                    <button
+                                        style={{ backgroundColor: "white" }}
                                         className="btn d-flex align-items-center gap-2 rounded-pill"
                                         onClick={() => navigate('/pricing')}
                                     >
                                         <img src={assets.credit_star} alt="Credits" />
-                                        <span >Credits Left : {credit}</span>
+                                        <span>Credits Left : {credit}</span>
                                     </button>
                                 </li>
+                                |
                                 <li>
                                     <div>
-                                        <button className='LoginBtn rounded-5' onClick={logout}>logout</button>
+                                        <button className="LoginBtn rounded-5" style={{border:"2px solid"}} onClick={logout}>
+                                            Logout
+                                        </button>
                                     </div>
                                 </li>
                             </ul>
                         ) : (
-                            /* If not logged in */
                             <ul className="navbar-nav ms-auto d-flex column align-items-center gap-3 mt-3 mt-lg-0">
                                 <li className="nav-item">
                                     <a
-                                        className="nav-link active"
+                                        className="nav-link text-white active"
                                         style={{ cursor: "pointer" }}
                                         onClick={() => navigate('/pricing')}
                                     >
                                         Pricing
                                     </a>
                                 </li>
+                                |
                                 <li className="nav-item">
                                     <button
-                                        className="LoginBtn btn-dark text-white rounded-pill py-2 px-4"
+                                        className="LoginBtn w-100 btn-dark text-white rounded-pill py-2 px-4"
                                         onClick={() => navigate('/login')}
                                         type="button"
+                                        style={{ border: "2px solid" }}
                                     >
                                         Login
                                     </button>
