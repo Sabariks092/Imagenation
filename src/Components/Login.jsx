@@ -30,7 +30,7 @@ export const Login = () => {
                 localStorage.setItem('token', data.token); // Correctly setting the token in localStorage
                 setShowLogin(false);
                 toast.success('Login successful!');
-                navigate('/'); // Navigating to the home page after login
+                navigate('/generate-image'); // Navigating to the home page after login
             } else {
                 toast.error(data.message); // Displaying error message
             }
@@ -81,7 +81,7 @@ export const Login = () => {
                         </div>
                         <button
                             type="submit"
-                            className="btn btn-primary mb-3"
+                            className="promtBtn rounded-5 w-50 btn-primary mb-3"
                             style={{
                                 display: 'block',
                                 margin: 'auto',
@@ -90,16 +90,18 @@ export const Login = () => {
                         >
                             Login
                         </button>
+                        <hr />
+                        <p className='text-center'>Don't have an account ? Click Below</p>
                         <Link to="/Signup">
                             <button
                                 type="button"
-                                className="btn"
+                                className="promtBtn rounded-5 w-50"
                                 style={{
                                     display: 'block',
                                     margin: 'auto',
                                     width: '50%',
                                     border: '1px solid rgb(0,29,59)',
-                                    color: 'rgb(13,110,253)',
+                                    textDecoration:"none"
                                 }}
                             >
                                 Create Account

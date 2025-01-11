@@ -34,7 +34,7 @@ export const Signup = () => {
                 localStorage.setItem('token', data.token);
                 setShowLogin(false);
                 toast.success('Registration successful!');
-                navigate('/');
+                navigate('/generate-image');
             } else {
                 toast.error(data.message);
             }
@@ -49,14 +49,15 @@ export const Signup = () => {
             <div className="card" style={{ width: "400px" }}>
                 <div className="card-body" style={{ boxShadow: "2px 2px 8px" }}>
                     <div className="mb-3 text-center">
-                        <img src="/6177136946132927654.jpg" alt="Signup" style={{ maxWidth: "100%" }} />
+                        <h1 className='fw-bold'>Welcome !</h1>
+                        <p>It takes only few minutes feature your <span>Ideas :)</span></p>
                     </div>
                     <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
+                        <div className="mb-">
                             <label className="form-label">First Name</label>
                             <input type="text" name="name" onChange={handleInput} className="form-control" />
                         </div>
-                        <div className="mb-3">
+                        <div className="mb-">
                             <label className="form-label">Email address</label>
                             <input type="email" name="email" onChange={handleInput} className="form-control" />
                             <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
@@ -76,13 +77,19 @@ export const Signup = () => {
                                 I Accept the <a href="#">terms and conditions</a>
                             </label>
                         </div>
-                        <button type="submit" className="btn btn-primary w-100">Submit</button>
+                        <div className='d-flex justify-content-center'>
+                            <button type="submit" className="promtBtn btn-primary rounded-5 w-50">Submit</button>
+
+                        </div>
                     </form>
                     <hr />
-                    <p className="text-center">I already have an account</p>
-                    <Link to="/login">
-                        <button className="btn btn-outline-primary w-100">Login</button>
-                    </Link>
+                    <div className='d-flex w-100 flex-column justify-items-center align-items-center justify-content-center'>
+
+                        <p className="text-center">I already have an account ?</p>
+                        <Link to="/login">
+                            <button className="promtBtn btn-outline-primary rounded-5 ">Login</button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

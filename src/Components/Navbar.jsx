@@ -9,16 +9,18 @@ export const Navbar = () => {
     const navigate = useNavigate();
     return (
         <>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <nav className="navbar navbar-expand-lg bg-body-tertiary" style={{}}>
                 <div className="container-fluid">
                     {/* Logo Section */}
-                    <img
+                    {/* <img
                         src={assets.logo}
                         alt="Logo"
                         style={{ cursor: "pointer" }}
                         onClick={() => navigate('/')}
                         className="me-auto"
-                    />
+                    /> */}
+                    <h1 style={{ cursor: "pointer" }}
+                        onClick={() => navigate('/')}><strong>Imagenation</strong></h1>
                     <button
                         className="navbar-toggler"
                         type="button"
