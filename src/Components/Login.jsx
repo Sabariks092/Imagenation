@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 
 export const Login = () => {
     const navigate = useNavigate();
+    const [loading,setLoading]= useState(false);
 
     const { setShowLogin, backendUrl, setUser, setToken } = useContext(AppContext);
 
@@ -21,6 +22,7 @@ export const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true);
 
         try {
             const { data } = await axios.post(`${backendUrl}/api/user/login`, loginData);
@@ -50,65 +52,74 @@ export const Login = () => {
                 alignItems: 'center',
             }}
         >
+
             <div className="card pb-3" style={{ width: '400px' }}>
+                {!loading &&
                 <div className="card-body">
-                    <div className="mb-3 text-center">
-                        <h1 className="fw-bold">Welcome!</h1>
-                        <p>Please login to continue.</p>
+                <div className="mb-3 text-center">
+                    <h1 className="fw-bold">Welcome!</h1>
+                    <p>Please login to continue.</p>
+                </div>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="form-label">Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Enter Valid Email"
+                            onChange={handleInput}
+                            className="form-control"
+                            required
+                        />
                     </div>
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
-                            <label className="form-label">Email</label>
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="Enter Valid Email"
-                                onChange={handleInput}
-                                className="form-control"
-                                required
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label className="form-label">Password</label>
-                            <input
-                                type="password"
-                                name="password"
-                                placeholder="Enter Your Password"
-                                onChange={handleInput}
-                                className="form-control"
-                                required
-                            />
-                        </div>
+                    <div className="mb-3">
+                        <label className="form-label">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Enter Your Password"
+                            onChange={handleInput}
+                            className="form-control"
+                            required
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        className="promtBtn rounded-5 w-50 btn-primary mb-3"
+                        style={{
+                            display: 'block',
+                            margin: 'auto',
+                            width: '50%',
+                        }}
+                    >
+                        Login
+                    </button>
+                    <hr />
+                    <p className='text-center'>Don't have an account ? Click Below</p>
+                    <Link to="/Signup">
                         <button
-                            type="submit"
-                            className="promtBtn rounded-5 w-50 btn-primary mb-3"
+                            type="button"
+                            className="promtBtn rounded-5 w-50"
                             style={{
                                 display: 'block',
                                 margin: 'auto',
                                 width: '50%',
+                                border: '1px solid rgb(0,29,59)',
+                                textDecoration:"none"
                             }}
                         >
-                            Login
+                            Create Account
                         </button>
-                        <hr />
-                        <p className='text-center'>Don't have an account ? Click Below</p>
-                        <Link to="/Signup">
-                            <button
-                                type="button"
-                                className="promtBtn rounded-5 w-50"
-                                style={{
-                                    display: 'block',
-                                    margin: 'auto',
-                                    width: '50%',
-                                    border: '1px solid rgb(0,29,59)',
-                                    textDecoration:"none"
-                                }}
-                            >
-                                Create Account
-                            </button>
-                        </Link>
-                    </form>
-                </div>
+                    </Link>
+                </form>
+            </div>
+                 }
+                 {loading &&
+                 <div className='loader-wrapper'>
+                    <p> Please Wait !..</p>
+                    <div className='loader'></div>
+                 </div>
+                 }
             </div>
         </div>
     );

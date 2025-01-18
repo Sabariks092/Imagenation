@@ -8,6 +8,8 @@ export const Signup = () => {
     const navigate = useNavigate();
     const { setToken, setUser, setShowLogin, backendUrl } = useContext(AppContext);
 
+    const [loading,setLoading]=useState();
+
     const [regData, setRegData] = useState({ name: '', email: '', password: '' });
     const [isChecked, setIsChecked] = useState(false);
 
@@ -17,6 +19,7 @@ export const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         if (!regData.name || !regData.email || !regData.password) {
             toast.error('All fields are required!');
             return;
@@ -42,12 +45,13 @@ export const Signup = () => {
             console.error("Error registering user:", error.message);
             toast.error("Error registering user: " + (error.response?.data?.message || error.message));
         }
+        setLoading(false);
     };
 
     return (
         <div className="container mt-5" style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
             <div className="card" style={{ width: "400px" }}>
-                <div className="card-body" style={{ boxShadow: "2px 2px 8px" }}>
+                {!loading && <div className="card-body" style={{ boxShadow: "2px 2px 8px" }}>
                     <div className="mb-3 text-center">
                         <h1 className='fw-bold'>Welcome !</h1>
                         <p>It takes only few minutes feature your <span>Ideas :)</span></p>
@@ -90,7 +94,13 @@ export const Signup = () => {
                             <button className="promtBtn btn-outline-primary rounded-5 ">Login</button>
                         </Link>
                     </div>
-                </div>
+                </div>}
+                {loading &&
+                 <div className='loader-wrapper'>
+                    <p> Please Wait !..</p>
+                    <div className='loader'></div>
+                 </div>
+                 }
             </div>
         </div>
     );

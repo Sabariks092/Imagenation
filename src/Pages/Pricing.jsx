@@ -11,6 +11,7 @@ export const Pricing = () => {
   const handleSelectedPlan = (plan) => {
     saveUserPlanData(plan);
     alert(`You have selected the ${plan} plan!`);
+  
     navigate('/success'); // Adjust this to your desired route
   };
 
@@ -50,22 +51,18 @@ export const Pricing = () => {
             <div className="card-body">
               <h5 className="card-title text-center">
                 {plan === 'Free'
-                  ? '[ Free/24hrs ]'
+                  ? '[ Free ]'
                   : plan === 'Pro'
                   ? '[ Rs 999/mon ]'
                   : '[ Rs 3499/mon ]'}
               </h5>
               <hr />
-              <p className="card-text">Max file size : 5 MB</p>
-              <hr />
-              <p className="card-text">OCR Support : Yes</p>
-              <hr />
               <p className="card-text">
                 Customer Support : {plan === 'Free' ? 'No' : 'Yes'}
               </p>
               <hr />
-              <p className="card-text">Total sessions : unlimited</p>
-            </div>
+              <p className="card-text">Credits : {plan === 'Free' ? '5' : plan === 'Pro' ? '50' : plan === 'Advanced' ? '100' : '0'}</p>
+              </div>
             <div className="card-footer p-3" style={{ textAlign: 'center' }}>
               <button
                 className="btn btn-primary px-5"

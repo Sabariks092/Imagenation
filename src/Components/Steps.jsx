@@ -7,7 +7,7 @@ export const Steps = () => {
       <hr style={{ color: "white" }} />
       <div className="text-center text-white">
         <h1 className="fw-bold mt-5">How it Works?</h1>
-        <p>trandw, fmnsdkjfsu9dfswopdjfjsdojfnsdjobv</p>
+        <p> Here we can see how <span className='fw-bold'>Imagenation</span> </p>
       </div>
       <div className="text-white justify-content-center align-items-center">
         {stepsData.map((item, index) => (
