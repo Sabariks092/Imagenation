@@ -40,6 +40,7 @@ export const Login = () => {
             console.error('Error logging in user:', error.response?.data?.message || error.message);
             toast.error('Error: ' + (error.response?.data?.message || error.message));
         }
+        setLoading(false);
     };
 
     return (

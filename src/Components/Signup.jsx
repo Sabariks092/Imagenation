@@ -58,23 +58,23 @@ export const Signup = () => {
                     </div>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-">
-                            <label className="form-label">First Name</label>
+                            <label className="form-label">Name</label>
                             <input type="text" name="name" onChange={handleInput} className="form-control" />
                         </div>
                         <div className="mb-">
                             <label className="form-label">Email address</label>
                             <input type="email" name="email" onChange={handleInput} className="form-control" />
-                            <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Password</label>
                             <input type="password" name="password" onChange={handleInput} className="form-control" />
                         </div>
-                        <div className="mb-3 form-check">
+                        <div className="mb-3 d-flex gap-2 justify-content-center form-check">
                             <input
                                 type="checkbox"
                                 className="form-check-input"
                                 id="exampleCheck1"
+                                style={{border:"1px solid black"}}
                                 onChange={(e) => setIsChecked(e.target.checked)}
                             />
                             <label className="form-check-label">
