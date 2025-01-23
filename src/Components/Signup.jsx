@@ -22,10 +22,12 @@ export const Signup = () => {
         setLoading(true);
         if (!regData.name || !regData.email || !regData.password) {
             toast.error('All fields are required!');
+            setLoading(false)
             return;
         }
         if (!isChecked) {
             toast.error('You must accept the terms and conditions.');
+            setLoading(false)
             return;
         }
 
@@ -59,18 +61,19 @@ export const Signup = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="mb-">
                             <label className="form-label">Name</label>
-                            <input type="text" name="name" onChange={handleInput} className="form-control" />
+                            <input type="text" required name="name" onChange={handleInput} className="form-control" />
                         </div>
                         <div className="mb-">
                             <label className="form-label">Email address</label>
-                            <input type="email" name="email" onChange={handleInput} className="form-control" />
+                            <input type="email" required name="email" onChange={handleInput} className="form-control" />
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Password</label>
-                            <input type="password" name="password" onChange={handleInput} className="form-control" />
+                            <input type="password" required name="password" onChange={handleInput} className="form-control" />
                         </div>
                         <div className="mb-3 d-flex gap-2 justify-content-center form-check">
                             <input
+                            required
                                 type="checkbox"
                                 className="form-check-input"
                                 id="exampleCheck1"
